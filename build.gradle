@@ -1,29 +1,28 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.2.2'
-	id 'io.spring.dependency-management' version '1.1.4'
+    id 'java'
+    id 'io.spring.dependency-management' version '1.1.4'
+    id 'java-test-fixtures'
 }
 
-group = 'de.cronn'
-version = '0.0.1-SNAPSHOT'
-
 java {
-	sourceCompatibility = '17'
+    sourceCompatibility = '17'
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
+}
+
+dependencyManagement {
+    dependencies {
+        dependency 'org.keycloak:keycloak-admin-client:22.0.5'
+    }
 }
 
 dependencyLocking {
-	lockAllConfigurations()
+    lockAllConfigurations()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.keycloak:keycloak-admin-client'
 }
 
-tasks.named('test') {
-	useJUnitPlatform()
-}
